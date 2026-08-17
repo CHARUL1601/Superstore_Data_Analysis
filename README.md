@@ -38,6 +38,4 @@ An end-to-end data analysis project examining 9,994 retail transactions across t
 ## 4. Technical Decisions & Choices
 * **Modular 2-Notebook Architecture**: Separated data cleaning/preprocessing from downstream exploratory analysis. This ensures data preparation is reproducible and prevents code bloat in the analytical notebook.
 * **Zero Data Loss Imputation**: 11 records missing postal codes were cross-referenced with City (`Burlington`) and State (`Vermont`) and imputed with official USPS ZIP `05401`, avoiding row deletion.
-* **RFM Quintile Scoring**: Used quantile-based binning (`pd.qcut`) on Recency, Frequency, and Monetary spend to ensure fair, data-driven cohort assignments across the customer base.
-* **Clean Visual Hierarchy**: Standardized all visualizations with a formal, publication-ready color palette (`#2C3E50`, `#386641`, `#8B263E`), descriptive action titles, and grid-free axes (`plt.grid(False)` and `sns.despine()`).
 ---
