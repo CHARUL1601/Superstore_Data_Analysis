@@ -9,7 +9,7 @@ An end-to-end data analysis project examining 9,994 retail transactions across t
 * **Data Cleaning & Preprocessing Pipeline (`01_data_cleaning_and_preparation.ipynb`)**: Schema validation, missing postal code imputation, date transformation, duplicate verification, and feature engineering exported to `cleaned_superstore.csv`.
 * **Exploratory Data Analysis & Business Insights (`02_business_insights_and_eda.ipynb`)**: Comprehensive analysis answering 5 core business questions with custom-styled, action-titled visualizations.
 * **RFM Customer Segmentation Model**: Recency, Frequency, and Monetary scoring to classify 793 unique customers into behavioral cohorts.
-* **Strategic Turnaround Recommendations**: Data-backed pricing and operational action items to recover margins.
+
 
 ---
 
