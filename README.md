@@ -1,109 +1,38 @@
-# US Superstore Sales & Profitability Analysis
-**An End-to-End Data Analytics Case Study by a Data Analyst**
+# Superstore Sales & Profitability Analysis
+
+## Project Overview
+An end-to-end data analysis project examining 9,994 retail transactions across the United States from 2015 to 2018. The analysis focuses on understanding revenue trajectories, diagnosing root causes of profit leakages, establishing pricing elasticity thresholds, and segmenting customer lifetime value to deliver actionable turnaround strategies.
 
 ---
 
-## 📌 Project Overview
-In this project, I analyzed four years of transaction data from a US retail superstore (**9,994 orders**, **$2.297M in revenue**, **$286.4K in net profit**) from 2015 to 2018. 
-
-While top-line sales grew steadily (+51.4% over four years), my goal was to find where the business was losing money and uncover actionable opportunities to improve margins. Through data cleaning, exploratory analysis, and customer segmentation, I identified significant profit leakages from over-discounting, loss-making product categories, and regional pricing imbalances.
-
----
-
-## 🎯 Executive KPI Summary
-
-| Key Metric | Value | What It Means |
-| :--- | :--- | :--- |
-| **Total Revenue** | **$2,297,200.86** | Generated across 5,009 unique customer orders |
-| **Net Operating Profit** | **$286,397.02** | Overall profit margin of **12.47%** |
-| **The 20% Discount Cliff** | **-$135,376.06** | Total profit lost on transactions discounted over 20% |
-| **Top Sub-Category Engine** | **Copiers (37.20% Margin)** | $55.6K profit generated from just 68 sales |
-| **Biggest Money Loser** | **Tables (-8.56% Margin)** | Incurred -$17.7K in losses despite $206.9K in sales |
-| **Top Region** | **West Region (14.94% Margin)** | Delivered $108.4K profit on $725.5K revenue |
-| **Underperforming Region** | **Central Region (7.92% Margin)** | Dragged down by deep discounting in Texas (-$25.7K) and Illinois (-$12.6K) |
-| **Customer Concentration** | **Top 38.7% (Champions/Loyalists)** | Generated **66.5% of total business profits** |
+## 1. What Was Built
+* **Data Cleaning & Preprocessing Pipeline (`01_data_cleaning_and_preparation.ipynb`)**: Schema validation, missing postal code imputation, date transformation, duplicate verification, and feature engineering exported to `cleaned_superstore.csv`.
+* **Exploratory Data Analysis & Business Insights (`02_business_insights_and_eda.ipynb`)**: Comprehensive analysis answering 5 core business questions with custom-styled, action-titled visualizations.
+* **RFM Customer Segmentation Model**: Recency, Frequency, and Monetary scoring to classify 793 unique customers into behavioral cohorts.
+* **Strategic Turnaround Recommendations**: Data-backed pricing and operational action items to recover margins.
 
 ---
 
-## 📁 Repository Structure
-
-```
-superstore/
-├── Superstore.csv                            # Raw transaction data (9,994 rows, 21 columns)
-│
-├── 01_data_cleaning_and_preparation.ipynb    # Part 1: Schema audit, missing value fixes & feature engineering
-├── cleaned_superstore.csv                    # Cleaned dataset with 13 engineered features
-├── 02_business_insights_and_eda.ipynb        # Part 2: 5 Business questions, visualizations & recommendations
-│
-├── superstore_data_analysis.ipynb            # All-in-One Master Notebook (Combined workflow)
-└── README.md                                 # Project documentation & summary
-```
-
+## 3. Methodology & Key Results
+### Analysis 1: Time Variation & Seasonal Demand
+* **Result**: Annual sales grew by **+51.4%** from \$484.2K (2015) to \$733.2K (2018).
+* **Key Finding**: November and December account for over **30% of annual revenue and orders**, showing a **3.8x volume surge** over early-year lows. Standard Class shipping fulfills 59.1% of orders with an average lead time of 5.01 days.
+### Analysis 2: Order & Profit Dynamics
+* **Result**: Technology (\$145.5K profit, 17.40% margin) and Office Supplies (\$122.5K profit, 17.04% margin) are the main profit drivers.
+* **Key Finding**: Furniture delivered an anemic **2.49% profit margin**. While **Copiers** (\$55.6K profit, 37.2% margin) and **Paper** (\$34.1K profit, 43.4% margin) are top earners, **Tables** (-\$17.7K loss) and **Bookcases** (-\$3.5K loss) burned over \$21,000 in bottom-line profits.
+### Analysis 3: Discount Variation with Order Volume vs. Profit
+* **Result**: Promotional discounts $\le 20\%$ maintain positive operating margins (+11.58% to +29.51%).
+* **Key Finding**: Discounts $>20\%$ caused severe margin collapse (-10.05% for 21–30%, -24.80% for 31–50%, and -119.20% for $>50\%$). Across 1,393 transactions discounted beyond 20%, **86.1% incurred direct losses**, destroying **\$135,376.06 in cumulative net profits**.
+### Analysis 4: Region-Wise Product Analysis
+* **Result**: West (\$108.4K profit, 14.94% margin) and East (\$91.5K profit, 13.48% margin) lead the company in profit generation.
+* **Key Finding**: The Central region generated \$501.2K in revenue but realized only **\$39,706.36 in profit** (7.92% margin). This was caused by heavy discounting in **Texas** (-\$25.7K loss, 37.2% avg discount) and **Illinois** (-\$12.6K loss, 39.0% avg discount), where over 53% of transactions were unprofitable.
+### Analysis 5: Customer Segment & RFM Analysis
+* **Result**: The top 38.7% of accounts (**Champions & Loyal Customers**) generated **66.52% of total business profits** (\$190.5K).
+* **Key Finding**: Champions exhibited the highest profit margin (14.2%) with the lowest discount dependency, while 178 "At-Risk" customers accounted for substantial churn following introductory promotional discounts.
 ---
-
-## 🔬 What I Did: Step-by-Step Breakdown
-
-### Part 1: Data Cleaning & Preparation (`01_data_cleaning_and_preparation.ipynb`)
-- **Missing Value Handling**: Only `Postal Code` had missing values (11 rows). I filtered for those rows and discovered they were all from **Burlington, Vermont**. Using official USPS data, I imputed Burlington's ZIP code (`05401`) and formatted it as a 5-digit string so leading zeros weren't lost.
-- **Feature Engineering**:
-  - `Profit Margin (%)` = `(Profit / Sales) * 100`
-  - `Shipping Duration (Days)` = `Ship Date - Order Date`
-  - `Discount Bracket` = 6 operational tiers (`0%`, `1-10%`, `11-20%`, `21-30%`, `31-50%`, `>50%`)
-  - `Is Loss` = Flag for negative-margin transactions (`Profit < 0`)
-  - `Unit Price` & `COGS`
-  - Calendar fields (`Year`, `Month`, `Quarter`, `Day of Week`)
-- **Export**: Saved the transformed data as `cleaned_superstore.csv`.
-
+## 4. Technical Decisions & Choices
+* **Modular 2-Notebook Architecture**: Separated data cleaning/preprocessing from downstream exploratory analysis. This ensures data preparation is reproducible and prevents code bloat in the analytical notebook.
+* **Zero Data Loss Imputation**: 11 records missing postal codes were cross-referenced with City (`Burlington`) and State (`Vermont`) and imputed with official USPS ZIP `05401`, avoiding row deletion.
+* **RFM Quintile Scoring**: Used quantile-based binning (`pd.qcut`) on Recency, Frequency, and Monetary spend to ensure fair, data-driven cohort assignments across the customer base.
+* **Clean Visual Hierarchy**: Standardized all visualizations with a formal, publication-ready color palette (`#2C3E50`, `#386641`, `#8B263E`), descriptive action titles, and grid-free axes (`plt.grid(False)` and `sns.despine()`).
 ---
-
-### Part 2: Business Questions & Strategic Insights (`02_business_insights_and_eda.ipynb`)
-
-#### 1. Time Variation & Seasonality
-- **Long-Term Trajectory**: Sales expanded by **+51.4%** from 2015 ($484.2K) to 2018 ($733.2K), maintaining positive double-digit YoY growth.
-- **Q4 Surge**: November and December generate over **30% of total annual sales and profit** (3.2x higher than January/February lows).
-- **Shipping Times**: Standard Class (59.1% of orders) averages 5.01 days, while First Class averages 2.18 days and Same Day fulfills in 0.04 days.
-
-#### 2. Sales vs. Profit by Product (Stars vs. Drainers)
-- **Category Comparison**: Technology (17.4% margin) and Office Supplies (17.0% margin) are consistent profit drivers, while Furniture struggles at just **2.49% margin**.
-- **Top Earners**: **Copiers** delivered **$55.6K profit** (37.2% margin from 68 sales) and **Paper** delivered **$34.1K profit** (43.4% margin, 0 loss-making orders).
-- **Loss Drainers**: **Tables** lost **-$17,725.48** (-8.56% margin) and **Bookcases** lost **-$3,472.56** (-3.02% margin).
-
-#### 3. The Discount Dilemma & The 20% Cliff
-- **The 20% Inversion Point**:
-  - `0% Discount`: 29.51% margin ($320.9K profit).
-  - `1% - 20% Discount`: 11.90% margin ($100.8K profit).
-  - `21% - 30% Discount`: **-10.05% margin** (-$10.4K loss).
-  - `31% - 50% Discount`: **-24.80% margin** (-$48.4K loss).
-  - `> 50% Discount`: **-119.20% margin** (-$76.6K loss).
-- **Profit Destroyed**: Discounts over 20% resulted in **$135,376.06 in cumulative losses** across 1,393 transactions (86.1% failure rate).
-
-#### 4. Regional & State Performance
-- **Regional Breakdown**: The West ($108.4K profit, 14.94% margin) and East ($91.5K profit, 13.48% margin) lead the business. The Central region generated $501.2K in sales but only **$39.7K in profit (7.92% margin)**.
-- **Root Cause**: Heavy regional discounting in **Texas** (37.2% avg discount, -$25.7K loss) and **Illinois** (39.0% avg discount, -$12.6K loss), where over 50% of orders lost money.
-
-#### 5. Customer RFM Segmentation
-- **Value Concentration**: **Champions & Loyalists** (38.7% of customers) drove **66.5% of total profits** ($190.5K) with healthy 14.2% margins and minimal discount dependency.
-- **At-Risk Cohort**: 178 customers ($478.4K past spend) haven't purchased in ~295 days. They received high discounts in the past (16.2% avg), showing they are deal-driven buyers who drop off without promotions.
-
----
-
-## 💡 My Top 5 Strategic Recommendations
-
-1. **Cap Standard Discounts at 20%**: Stop discounts over 20% to immediately protect over **$135K in profits**.
-2. **End Blanket Coupon Codes in Texas and Illinois**: Switch from statewide coupon codes to targeted, SKU-level pricing to fix the Central region's margin.
-3. **Restructure Furniture (Tables & Bookcases)**: Renegotiate freight contracts for bulky items, bundle Tables with high-margin Chairs/Accessories, and drop unprofitable SKUs.
-4. **Give Champions Service Perks Instead of Price Cuts**: Our best customers aren't discount-sensitive. Offer them free priority shipping upgrades and dedicated support rather than cash markdowns.
-5. **Lock in Carrier Capacity by September for Q4**: Plan warehouse staffing and carrier contracts in late Q3 to handle the holiday rush without expensive expedited surcharges.
-
----
-
-## 🚀 How to Run
-
-```bash
-# 1. Install dependencies
-pip install pandas numpy matplotlib seaborn
-
-# 2. Run the pipeline
-# Open '01_data_cleaning_and_preparation.ipynb' and Run All
-# Open '02_business_insights_and_eda.ipynb' and Run All
-```
