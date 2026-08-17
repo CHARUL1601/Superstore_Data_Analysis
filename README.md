@@ -23,7 +23,7 @@ An end-to-end data analysis project examining 9,994 retail transactions across t
 ### Analysis 3: Discount Variation with Order Volume vs. Profit
 * **Result**: Promotional discounts $\le 20\%$ maintain positive operating margins (+11.58% to +29.51%).
 * **Key Finding**: Discounts $>20\%$ caused severe margin collapse (-10.05% for 21–30%, -24.80% for 31–50%, and -119.20% for $>50\%$). Across 1,393 transactions discounted beyond 20%, **86.1% incurred direct losses**, destroying **\$135,376.06 in cumulative net profits**.
-* (images/discount_analysis.png)
+* ![Discount Analysis](images/discount_analysis.png)
 ### Analysis 4: Region-Wise Product Analysis
 * **Result**: West (\$108.4K profit, 14.94% margin) and East (\$91.5K profit, 13.48% margin) lead the company in profit generation.
 * **Key Finding**: The Central region generated \$501.2K in revenue but realized only **\$39,706.36 in profit** (7.92% margin). This was caused by heavy discounting in **Texas** (-\$25.7K loss, 37.2% avg discount) and **Illinois** (-\$12.6K loss, 39.0% avg discount), where over 53% of transactions were unprofitable.
